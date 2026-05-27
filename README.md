@@ -21,3 +21,14 @@ Once `startDocker.sh` is executable, you can run it with:
 ```` bash
 ./startDocker.sh
 ````
+
+## Lab Sequence Description
+
+| Lab | Weeks | Content |
+| --- | --- | --- |
+| 1 | 1 | Rviz, Intro to ROSBots |
+| 2 | 1 | Publish/Subscribe to Teleop the Bot |
+| 3 | 2 | SLAM |
+| 4 | 3 | Pick and Place |
+| 5 | 3 | Delivery and Navigation |
+| 6 | 3 | Further Exploration |
