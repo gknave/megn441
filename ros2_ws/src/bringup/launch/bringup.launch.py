@@ -1,0 +1,32 @@
+import os
+from ament_index_python.packages import get_package_share_directory
+
+from launch_ros.actions import Node
+from launch.actions import ExecuteProcess
+from launch import LaunchDescription, LaunchService
+from launch.actions import IncludeLaunchDescription, OpaqueFunction
+from launch.launch_description_sources import PythonLaunchDescriptionSource
+
+def launch_setup(context):
+    startup_check_node = Node(
+        package='bringup',
+        executable='startup_check',
+        output='screen',
+    )
+
+    return [
+            startup_check_node,
+            ]
+
+def generate_launch_description():
+    return LaunchDescription([
+        OpaqueFunction(function = launch_setup)
+    ])
+
+if __name__ == '__main__':
+    # Create a LaunchDescription object
+    ld = generate_launch_description()
+
+    ls = LaunchService()
+    ls.include_launch_description(ld)
+    ls.run()
