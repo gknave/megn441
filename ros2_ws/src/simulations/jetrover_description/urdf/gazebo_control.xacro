@@ -1,9 +1,8 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="simple_bot">
-
     <gazebo>
         <plugin name='gz::sim::systems::AckermannSteering' 
-            filename='gz-sim-ackermann-steering-system'>
+        filename='ignition-gazebo-ackermann-steering-system'>            
             <left_joint>wheel_left_rear_joint</left_joint>
             <right_joint>wheel_right_rear_joint</right_joint>
             <left_steering_joint>wheel_left_front_steering_joint
@@ -12,11 +11,11 @@
                 </right_steering_joint>
 
             <!-- TODO: Update Geometry -->
-            <wheel_separation>1.25</wheel_separation>
-            <wheel_radius>0.3</wheel_radius>
-            <kingpin_width>1.0</kingpin_width>
+            <wheel_separation>0.222</wheel_separation>
+            <wheel_radius>0.101</wheel_radius>
+            <kingpin_width>0.2</kingpin_width>
             <steering_limit>0.5</steering_limit>
-            <wheel_base>1.0</wheel_base> <!-- Front-back wheel base -->
+            <wheel_base>0.213</wheel_base> <!-- Front-back wheel base -->
 
             <min_velocity>-1</min_velocity>
             <max_velocity>1</max_velocity>
@@ -32,8 +31,12 @@
 
         <plugin name="gz::sim::systems::JointStatePublisher" filename="gz-sim-joint-state-publisher-system">
             <topic>joint_states</topic>
-            <joint_name>left_wheel_joint</joint_name>
-            <joint_name>right_wheel_joint</joint_name>
+            <joint_name>wheel_left_rear_joint</joint_name>
+            <joint_name>wheel_right_rear_joint</joint_name>
+            <joint_name>wheel_left_front_joint</joint_name>
+            <joint_name>wheel_right_front_joint</joint_name>
+            <joint_name>wheel_left_front_steering_joint</joint_name>
+            <joint_name>wheel_right_front_steering_joint</joint_name>
         </plugin>
     </gazebo>
 

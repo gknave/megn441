@@ -98,11 +98,12 @@
     <axis
       xyz="0 0 0" />
   </joint>
+
   <link
     name="wheel_left_front_link">
     <inertial>
       <origin
-        xyz="-0.213334280297957 -0.203369638948946 -0.000334615151787748"
+        xyz="0.213334280297957 0.203369638948946 -0.000334615151787748"
         rpy="0 0 0" />
       <mass
         value="0.124188560741815" />
@@ -134,24 +135,60 @@
       </geometry>
     </collision>
   </link>
+
+  <joint
+    name="wheel_left_front_steering_joint"
+    type="revolute">
+    <origin
+      xyz="0.106579884267788 0.0916974467397005 -0.0654867643253843"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="wheel_left_front_base" />
+    <axis
+      xyz="0 0 1" />
+    <limit effort="100" velocity="1" lower="-0.5" upper="0.5"/> 
+  </joint>
+
+  <link name="wheel_left_front_base">
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.001"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>        
+        <sphere radius="0.001"/>
+      </geometry>
+    </collision>
+  </link>
+
   <joint
     name="wheel_left_front_joint"
     type="continuous">
     <origin
-      xyz="-0.106579884267788 -0.0916974467397005 -0.0654867643253843"
+      xyz="0 0 0"
       rpy="0 0 3.14159265358979" />
     <parent
-      link="base_link" />
+      link="wheel_left_front_base" />
     <child
       link="wheel_left_front_link" />
     <axis
-      xyz="0 0 0" />
+      xyz="0 -1 0" />
   </joint>
   <link
     name="wheel_left_back_link">
     <inertial>
       <origin
-        xyz="0.213327728411634 -0.202539554308172 0.000327384188806199"
+        xyz="-0.213327728411634 0.202539554308172 0.000327384188806199"
         rpy="0 0 0" />
       <mass
         value="0.132308742016336" />
@@ -187,20 +224,21 @@
     name="wheel_left_back_joint"
     type="continuous">
     <origin
-      xyz="0.106753653016542 -0.0920004072996187 -0.0658214520621466"
+      xyz="-0.106753653016542 0.0920004072996187 -0.0658214520621466"
       rpy="0 0 3.14158803228829" />
     <parent
       link="base_link" />
     <child
       link="wheel_left_back_link" />
     <axis
-      xyz="0 0 0" />
+      xyz="0 -1 0" />
   </joint>
+
   <link
     name="wheel_right_front_link">
     <inertial>
       <origin
-        xyz="-0.213332807255404 0.203675464611681 -0.000332210127461456"
+        xyz="0.213332807255404 -0.203675464611681 -0.000332210127461456"
         rpy="0 0 0" />
       <mass
         value="0.124186629923608" />
@@ -232,24 +270,62 @@
       </geometry>
     </collision>
   </link>
+
+  <joint
+    name="wheel_right_front_steering_joint"
+    type="revolute">
+    <origin
+      xyz="0.10658 -0.091851 -0.065487"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="wheel_right_front_base" />
+    <axis
+      xyz="0 0 1" />
+    <limit effort="100" velocity="1" lower="-0.5" upper="0.5"/> 
+  </joint>
+
+  <link name="wheel_right_front_base">
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.001"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>        
+        <sphere radius="0.001"/>
+      </geometry>
+    </collision>
+  </link>
+
   <joint
     name="wheel_right_front_joint"
     type="continuous">
     <origin
-      xyz="-0.10658 0.091851 -0.065487"
+      xyz="0 0 0"
       rpy="0 0 3.1416" />
     <parent
-      link="base_link" />
+      link="wheel_right_front_base" />
     <child
       link="wheel_right_front_link" />
     <axis
-      xyz="0 0 0" />
+      xyz="0 -1 0" />
+    <limit effort="100" velocity="1"/> 
   </joint>
+
   <link
     name="wheel_right_back_link">
     <inertial>
       <origin
-        xyz="0.21333 0.20224 0.00032742"
+        xyz="-0.21333 -0.20224 0.00032742"
         rpy="0 0 0" />
       <mass
         value="0.13231" />
@@ -285,13 +361,13 @@
     name="wheel_right_back_joint"
     type="continuous">
     <origin
-      xyz="0.10675 0.091848 -0.065821"
+      xyz="-0.10675 -0.091848 -0.065821"
       rpy="0 0 3.1416" />
     <parent
       link="base_link" />
     <child
       link="wheel_right_back_link" />
     <axis
-      xyz="0 0 0" />
+      xyz="0 -1 0" />
   </joint>
 </robot>
