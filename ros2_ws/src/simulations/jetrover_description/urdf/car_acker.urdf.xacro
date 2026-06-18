@@ -325,7 +325,7 @@
     name="wheel_right_back_link">
     <inertial>
       <origin
-        xyz="-0.21333 -0.20224 0.00032742"
+        xyz="0.21333 0.20224 0.00032742"
         rpy="0 0 0" />
       <mass
         value="0.13231" />
@@ -339,7 +339,7 @@
     </inertial>
     <visual>
       <origin
-        xyz="0 0 0"
+        xyz="0.10658 0.110392 0"
         rpy="0 0 0" />
       <geometry>
         <mesh
