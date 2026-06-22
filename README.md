@@ -13,7 +13,7 @@ docker build -t ros2-dev .
 Once you have built the docker image using the Dockerfile, modify `startDocker.sh` to capture the path to your local me441 directory with `ros2_ws`. You may need to make the shell script executable with:
 
 ```` bash
-chmod +777 startDocker.sh
+chmod 777 startDocker.sh
 ````
 
 Once `startDocker.sh` is executable, you can run it with:

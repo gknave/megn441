@@ -15,6 +15,7 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y --no-install-reco
     # ROS packages
     ros-humble-joint-state-publisher \
     ros-humble-joint-state-publisher-gui \
+    ros-humble-slam-toolbox \
     # Handy utilities
     bash-completion \
     curl \

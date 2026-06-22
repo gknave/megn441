@@ -176,13 +176,13 @@
     type="continuous">
     <origin
       xyz="0 0 0"
-      rpy="0 0 3.14159265358979" />
+      rpy="0 0 0" />
     <parent
       link="wheel_left_front_base" />
     <child
       link="wheel_left_front_link" />
     <axis
-      xyz="0 -1 0" />
+      xyz="0 1 0" />
   </joint>
   <link
     name="wheel_left_back_link">
@@ -225,13 +225,13 @@
     type="continuous">
     <origin
       xyz="-0.106753653016542 0.0920004072996187 -0.0658214520621466"
-      rpy="0 0 3.14158803228829" />
+      rpy="0 0 0" />
     <parent
       link="base_link" />
     <child
       link="wheel_left_back_link" />
     <axis
-      xyz="0 -1 0" />
+      xyz="0 1 0" />
   </joint>
 
   <link
@@ -339,7 +339,7 @@
     </inertial>
     <visual>
       <origin
-        xyz="0.10658 0.110392 0"
+        xyz="0 0 0"
         rpy="0 0 0" />
       <geometry>
         <mesh
