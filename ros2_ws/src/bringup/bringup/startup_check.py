@@ -13,11 +13,20 @@ ROBOT_NUMBER = 15
 
 NAMESPACE = "jetrover"
 
-def get_cpu_serial_number():
-    # device_serial_number = open("/proc/device-tree/serial-number")
-    # serial_num = device_serial_number.readlines()[0][-10:-1]
+# def get_cpu_serial_number():
+#     # device_serial_number = open("/proc/device-tree/serial-number")
+#     # serial_num = device_serial_number.readlines()[0][-10:-1]
 
-    HW_WIFI_AP_SSID = ''.join(["Rosbot-", ROBOT_NUMBER])
+#     HW_WIFI_AP_SSID = ''.join(["Rosbot-", ROBOT_NUMBER])
+
+#     return HW_WIFI_AP_SSID
+
+def get_cpu_serial_number():
+    device_serial_number = open("/proc/device-tree/serial-number")
+    serial_num = device_serial_number.readlines()[0][-10:-1]
+
+    sn = (serial_num + "00000000000000000000000000")[:32]
+    HW_WIFI_AP_SSID = ''.join(["HW-", sn[0:8]])
 
     return HW_WIFI_AP_SSID
 

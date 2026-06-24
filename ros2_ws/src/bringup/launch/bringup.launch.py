@@ -8,6 +8,14 @@ from launch.actions import IncludeLaunchDescription, OpaqueFunction
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 
 def launch_setup(context):
+    controller_package_path = get_package_share_directory('controller')
+
+
+    controller_launch = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(
+            os.path.join(controller_package_path, 'launch/controller.launch.py')),
+    )
+
     startup_check_node = Node(
         package='bringup',
         executable='startup_check',
@@ -15,6 +23,7 @@ def launch_setup(context):
     )
 
     return [
+            controller_launch,
             startup_check_node,
             ]
 
