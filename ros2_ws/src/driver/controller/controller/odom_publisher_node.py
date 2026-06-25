@@ -9,7 +9,7 @@ import threading
 from rclpy.node import Node
 from std_srvs.srv import Trigger
 from nav_msgs.msg import Odometry
-from controller import ackermann, mecanum
+from controller import ackermann
 from ros_robot_controller_msgs.msg import MotorsState, BusServoState, SetBusServoState 
 from geometry_msgs.msg import Pose2D, Pose, Twist, PoseWithCovarianceStamped, TransformStamped
 
@@ -83,9 +83,9 @@ class Controller(Node):
         self.current_time = None
         signal.signal(signal.SIGINT, self.shutdown)
         self.wheel_diameter_tank = 0.052
-        self.wheel_diameter_mecanum = 0.097
-        self.ackermann = ackermann.AckermannChassis(wheelbase=0.216, track_width=0.195, wheel_diameter=self.wheel_diameter_mecanum)
-        self.mecanum = mecanum.MecanumChassis(wheelbase=0.216, track_width=0.195, wheel_diameter=self.wheel_diameter_mecanum)
+        self.wheel_diameter = 0.097
+        self.ackermann = ackermann.AckermannChassis(wheelbase=0.216, track_width=0.195, wheel_diameter=self.wheel_diameter)
+        # self.mecanum = mecanum.MecanumChassis(wheelbase=0.216, track_width=0.195, wheel_diameter=self.wheel_diameter)
 
         # Declare parameters
         self.declare_parameter('pub_odom_topic', True)
