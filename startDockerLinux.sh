@@ -1,8 +1,19 @@
 #! /bin/bash
 xhost +local:docker
 
+# Be sure that docker container has been built first:
+# docker build -t ros2-dev .
+
+# Note: Change the location of your linked folder
+# (/home/garynave/megn441 is mine)
+
+LOCAL_DIR="/home/garynave/megn441"
+
+# This folder maps to /mnt/local within the docker container
+
+
 docker run -it -v /tmp/.X11-unix:/tmp/.X11-unix \
-  -v /home/garynave/megn441:/mnt/local \
+  -v ${LOCAL_DIR}:/mnt/local \
   -w /mnt/local \
   -e DISPLAY \
   -e WAYLAND_DISPLAY \
