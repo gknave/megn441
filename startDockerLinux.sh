@@ -5,9 +5,9 @@ xhost +local:docker
 # docker build -t ros2-dev .
 
 # Note: Change the location of your linked folder
-# (/home/garynave/megn441 is mine)
+# if it is anything other than ~/megn441
 
-LOCAL_DIR="/home/garynave/megn441"
+LOCAL_DIR="/home/$(id -un)/megn441"
 
 # This folder maps to /mnt/local within the docker container
 
