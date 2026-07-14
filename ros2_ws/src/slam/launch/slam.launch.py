@@ -13,9 +13,9 @@ def generate_launch_description():
 
     online_async_launch = IncludeLaunchDescription(
             PathJoinSubstitution([slam_dir, 'launch', 'online_async_launch.py']),
-            # launch_arguments = {
-            #     'slam_params_file': PathJoinSubstitution([my_slam_dir, 'config', 'mapper_params_online_async.yaml'])
-            # }
+            launch_arguments = {
+                'slam_params_file': PathJoinSubstitution([my_slam_dir, 'config', 'mapper_params_online_async.yaml'])
+            }.items()
         )
 
     ld = LaunchDescription()
