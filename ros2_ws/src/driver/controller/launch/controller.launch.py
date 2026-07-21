@@ -10,7 +10,6 @@ from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription, GroupAction, TimerAction, OpaqueFunction
 
 def launch_setup(context):
-    compiled = os.environ['need_compile']
     namespace = LaunchConfiguration('namespace', default='')
     use_namespace = LaunchConfiguration('use_namespace', default='false').perform(context)
     use_sim_time = LaunchConfiguration('use_sim_time', default='false')
@@ -31,14 +30,9 @@ def launch_setup(context):
     imu_frame_arg = DeclareLaunchArgument('imu_frame', default_value=imu_frame)
     frame_prefix_arg = DeclareLaunchArgument('frame_prefix', default_value=frame_prefix)
 
-    if compiled == 'True':
-        peripherals_package_path = get_package_share_directory('peripherals')
-        controller_package_path = get_package_share_directory('controller')
-        servo_controller_package_path = get_package_share_directory('servo_controller')
-    else:
-        peripherals_package_path = '/home/ubuntu/ros2_ws/src/peripherals'
-        controller_package_path = '/home/ubuntu/ros2_ws/src/driver/controller'
-        servo_controller_package_path = '/home/ubuntu/ros2_ws/src/driver/servo_controller'
+    peripherals_package_path = get_package_share_directory('peripherals')
+    controller_package_path = get_package_share_directory('controller')
+    servo_controller_package_path = get_package_share_directory('servo_controller')
 
     odom_publisher_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource([os.path.join(controller_package_path, 'launch/odom_publisher.launch.py')

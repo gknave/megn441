@@ -23,31 +23,42 @@ There are 3 options to connect to the Rosbots:
 
 By the end of this lab, you will be able to:
 
-- Install off-the-shelf ROS2 packages
-- Compile off-the-shelf ROS2 packages
-- Understand ROS topics
+- Use ROS2 packages and topics
 - Write a launch file
-- Visualize sensors using RViz2
+- Make your robot drive!
+- Write your own ROS2 node to control your robot with a joystick.
 
-We will be getting our LiDAR and RGBD cameras working in this lab, reading the data that they publish to two **topics**, or streams of data.  
+By the end of this lab, you'll be able to get the Robot driving around with both the keyboard and a handheld controller.
 
 ### Lab Procedure
 
-1. Download the packages `orbbec_camera` and `sllidar_ros2` from [OrbbecSDK_ROS2](https://github.com/orbbec/OrbbecSDK_ROS2/tree/main) and [Slamtec sllidar](https://github.com/Slamtec/sllidar_ros2) respectively into your `ros2_ws/src` folder. Use `git clone <url>` to download the files locally.
-2. Navigate back to `ros2_ws` and use `colcon` to build the packages. See class notes for more details. After this, you have successfully installed two ROS packages!
-3. TODO: Figure out any config files. Provide these!
-4. Use `ros2 launch` on each of the two packages. You'll need to create a new terminal for each one.
-5. Use `ros2 run rviz2 rviz2` to open RViz. You'll need to add both the depth camera and LiDAR to RViz. **Save the config file**
-6. Create a launch file, `view_sensors.launch.py` or `view_sensors.launch.xml` that runs the lidar, the depth camera, and `rviz2` with your configuration file.
-7. Record each topic to a ROS Bag.
+1. Clone [MEGN 441 git repository](https://github.com/gknave/megn441) into a folder of your own for your team.
+2. Get access to your robot through Nomachine or SSH.
+3. Copy your `ros2_ws/src` directory onto the robot. Use the command below to do so using the command line. `rsync` is a useful copy command either from one device to another or just one folder to another. The `-u` flag in the command tells it to "update," which means it only copies over *new* files and saves a lot of time.
+
+```bash
+rsync -ruv src ubuntu@192.149.168.1:~/ros2_ws/
+```
+
+4. On the robot, build the ros2 workspace by navigating to `~/ros2_ws` and using `colcon`. See course notes for support on this, and **don't forget to source `install/setup.bash`.
+5. On the robot now, if there is nothing currently running, run the launch file `bringup.launch.py` from the package `bringup`. This will run launch files within the `controller` package to get the drive functionality of the robot up and running.
+6. To drive the robot, in a separate terminal, run the node (not launch file) `teleop_twist_keyboard` from the package `teleop_twist_keyboard`. Now you should be able to drive your robot around!
+7. The next goal is to launch this driving all at once! First, we need to create a package, which we'll call `teleop`. Navigate to `ros2_ws/src/` and use the following command (change `ament_python` to `ament_cmake` if you prefer C++). In the next step, we'll create a node called `teleop_joy`. The `--node-name` flag here will create that node and tell the package about its existence.
+
+``` bash
+ros2 pkg create --build-type ament_python --node-name teleop_joy --dependencies teleop_twist_keyboard bringup
+```
+
+8. Create a directory within `~ros2_ws/src/teleop` called `launch`. Copy a launch file template from the Lab1 folder here into `~/ros2_ws/src/teleop/launch`. You will need to modify either `setup.py` or `CMakeLists.txt` to make `colcon` aware of the launch folder. See the [ROS2 Humble launch docs](https://docs.ros.org/en/humble/Tutorials/Intermediate/Launch/Launch-system.html) for help. Rename your launch file to call both `teleop_twist_keyboard.launch.py` and `bringup.launch.py`. For `teleop_twist_keyboard`, you'll also need to use `xterm`.
+9. Then, write a node to read data from the `/joy` topic and output to `/cmd_vel`. Now you can drive your robot with the controller!
 
 ## Lab Grading
 
 The grading of each lab is based 50\% on the successful completion of the lab. For this lab, that 50\% breaks down into:
 
-- 10\% on successfully installing the two packages
-- 10\% on successfully writing a launch file
-- 10\% on successfully 
+- 20\% for successfully driving your robot around with the keyboard (upload a short video as described below)
+- 20\% for successfully driving your robot around with the joystick (upload a short video as described below)
+- 10\% for successfully writing a launch file
 
 ### Lab Report Guidelines
 

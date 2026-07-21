@@ -5,3 +5,7 @@ ros2_ws/install
 ros2_ws/log
 ros2_ws/src/interfaces
 ros2_ws/src/peripherals
+ros2_ws/src/OrbbecSDK_ROS2
+ros2_ws/src/sllidar_ros2
+moveit_ws
+ros2_ws/src/teleop

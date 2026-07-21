@@ -16,6 +16,9 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y --no-install-reco
     ros-humble-joint-state-publisher \
     ros-humble-joint-state-publisher-gui \
     ros-humble-slam-toolbox \
+    ros-humble-backward-ros \
+    libgflags-dev \
+    nlohmann-json3-dev \
     # Handy utilities
     bash-completion \
     curl \
