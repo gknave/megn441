@@ -1,4 +1,4 @@
-# Lab 2: Driving Your Robot
+# Lab 4: Rosbot Navigation and Delivery
 
 TODO
 

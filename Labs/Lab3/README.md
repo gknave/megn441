@@ -1,4 +1,4 @@
-# Lab 2: Driving Your Robot
+# Lab 3: Simultaneous Localization and Mapping
 
 TODO
 

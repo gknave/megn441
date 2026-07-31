@@ -1,4 +1,4 @@
-# Lab 2: Driving Your Robot
+# Lab 2: Simultaneous Localization and Mapping (SLAM)
 
 TODO
 
