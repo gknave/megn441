@@ -9,7 +9,7 @@ To finish off the semesters let’s use the knowledge we’ve developed to have 
 You have two major options here:
 
 1. Go deeper on Rosbot capabilities. Is there some other cabability you'd like to add to the Rosbot? Go deeper on one of the topics we've barely discussed or add more functionality to the bot. Give it a new goal!
-2. Develop and build a new mechatronic or robotic system. 
+2. Develop and build a new mechatronic or robotic system.
 
 ### Lab Procedure
 
