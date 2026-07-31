@@ -1,4 +1,4 @@
-# Lab 1: Introduction to Rosbots, Depth Sensors, and RViz
+# Lab 1: Introduction to Rosbots, ROS2 packages, and remote control
 
 The goal of this lab is to get you oriented to the bots we will be using this semester. I'll be referring to them as `Rosbots`, but they're actually JetRovers from the company HiWonder. These bots are equipped with the following components:
 
