@@ -26,9 +26,8 @@ Once `startDocker.sh` is executable, you can run it with:
 
 | Lab | Weeks | Content |
 | --- | --- | --- |
-| 1 | 1 | Rviz, Intro to ROSBots |
-| 2 | 1 | Publish/Subscribe to Teleop the Bot |
-| 3 | 2 | SLAM |
-| 4 | 3 | Pick and Place |
-| 5 | 3 | Delivery and Navigation |
-| 6 | 3 | Further Exploration |
+| 1 | 1 | Introduction to Rosbots, ROS2 Packages, and Remote Control |
+| 2 | 3 | Simultaneous Localization and Mapping (SLAM) |
+| 3 | 3 | Robot Arm Pick and Place |
+| 4 | 3 | Delivery and Navigation |
+| 5 | 3 | Further Exploration |
