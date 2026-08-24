@@ -18,18 +18,14 @@ from servo_controller.joint_trajectory_action_controller import JointTrajectoryA
 class ControllerManager(Node):
     def __init__(self, name):
         rclpy.init()
-        super().__init__(name, allow_undeclared_parameters=True, automatically_declare_parameters_from_overrides=True)  # 允许未声明的参数
-        self.machine_type = os.environ.get('MACHINE_TYPE')
+        super().__init__(name, allow_undeclared_parameters=True, automatically_declare_parameters_from_overrides=True)
         
-        if self.machine_type != 'JetRover_Acker':
-            self.joints = ['joint1', 'joint2', 'joint3', 'joint4', 'joint5', 'r_joint']
-        else:
-            self.joints = ['joint1', 'joint2', 'joint3', 'joint4', 'joint5', 'r_joint', 'w_joint']       
+        self.joints = ['joint1', 'joint2', 'joint3', 'joint4', 'joint5', 'r_joint', 'w_joint']       
 
-        # 读取配置参数(read configuration parameter)
+        # read configuration parameter
         self.base_frame = self.get_parameter('base_frame').value
         
-        # trajectory_controller的初始化(initialization of trajectory_controller)
+        # initialization of trajectory_controller
         self.controllers = {}
         connected_ids = {}
         for i in self.joints:
@@ -38,9 +34,9 @@ class ControllerManager(Node):
             controller = JointPositionController(joint, i)
             self.controllers[i] = controller
 
-        # 实例化舵机管理节点(instantiate the servo management node)
+        # instantiate the servo management node
         self.servo_manager = ServoManager(connected_ids)
-        self.servo_manager.connect()  # 检查是否有给定的舵机已连接(check if the given servo is connected)
+        self.servo_manager.connect()  # check if the given servo is connected
 
         for i in ['arm_controller', 'gripper_controller']:
             controller = self.get_parameters_by_prefix(i)
@@ -53,7 +49,7 @@ class ControllerManager(Node):
         self.create_subscription(JointState, 'joint_controller', self.joint_controller_callback, 1)
 
         self.clock = self.get_clock()
-        # 确保ros_robot_controller已完成初始化(ensure that the ros_robot_controller has been initialized)
+        # ensure that the ros_robot_controller has been initialized
         namespace = self.get_namespace()
         if namespace == '/':
             namespace = ''
@@ -117,7 +113,7 @@ class ControllerManager(Node):
 
 def main():
     node = ControllerManager('controller_manager')
-    rclpy.spin(node)  # 循环等待ROS2退出(loop waiting for ROS2 exit)
+    rclpy.spin(node) 
 
 if __name__ == "__main__":
     main()

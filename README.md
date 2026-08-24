@@ -26,8 +26,8 @@ Once `startDocker.sh` is executable, you can run it with:
 
 | Lab | Weeks | Content |
 | --- | --- | --- |
-| 1 | 1 | Introduction to Rosbots, ROS2 Packages, and Remote Control |
-| 2 | 3 | Simultaneous Localization and Mapping (SLAM) |
+| 1 | 2 | Introduction to Rosbots, ROS2 Packages, and Remote Control |
+| 2 | 2 | Simultaneous Localization and Mapping (SLAM) |
 | 3 | 3 | Robot Arm Pick and Place |
 | 4 | 3 | Delivery and Navigation |
 | 5 | 3 | Further Exploration |

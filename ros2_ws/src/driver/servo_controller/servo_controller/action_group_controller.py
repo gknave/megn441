@@ -17,9 +17,9 @@ class ActionGroupController:
 
     def run_action(self, action_name):
         '''
-        运行动作组，无法发送stop停止信号(run action group, cannot send stop signal)
-        :param action_name: 动作组名字 ， 字符串类型(action group name, string type)
-        :param times:  运行次数(running times)
+        run action group, cannot send stop signal
+        :param action_name: ction group name, string type
+        :param times:  running times
         :return:
         '''
         if action_name is None:
@@ -53,7 +53,7 @@ class ActionGroupController:
                         msg.position = data
                         self.servo_controller_pub.publish(msg)
                         time.sleep(float(act[1])/1000.0)
-                    else:   # 运行完才退出(exit after running)
+                    else:   # exit after running
                         break
                 self.running_action = False
                 
@@ -61,4 +61,4 @@ class ActionGroupController:
                 ag.close()
         else:
             self.running_action = False
-            print("未能找到动作组文件: ", action_name)
+            print("Action Name: ", action_name)
