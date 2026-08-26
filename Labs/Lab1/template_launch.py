@@ -1,11 +1,14 @@
-import launch
-import launch_ros.actions
+from launch import LaunchDescription
+from launch_ros.actions import Node
 
 
 def generate_launch_description():
-    return launch.LaunchDescription([
-        launch_ros.actions.Node(
+
+    example_node = Node(
             package='example_pkg',
             executable='example_node',
-            name='example'),
-    ])
+            name='example')
+
+    return LaunchDescription(
+        [example_node,]
+    )

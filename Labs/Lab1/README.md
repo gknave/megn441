@@ -28,7 +28,7 @@ By the end of this lab, you will be able to:
 - Make your robot drive!
 - Write your own ROS2 node to control your robot with a joystick.
 
-By the end of this lab, you'll be able to get the Robot driving around with both the keyboard and a handheld controller.
+You'll be able to get the Robot driving around with both the keyboard and a handheld controller.
 
 ### Lab Procedure
 
@@ -51,16 +51,34 @@ ros2 pkg create rosbot --build-type ament_python --node-name teleop_joy --depend
 ```
 
 8. Create a directory within `~ros2_ws/src/rosbot` called `launch`. Copy a launch file template from the Lab1 folder here into `~/ros2_ws/src/rosbot/launch`. You will need to modify either `setup.py` or `CMakeLists.txt` to make `colcon` aware of the launch folder. See the [ROS2 Humble launch docs](https://docs.ros.org/en/humble/Tutorials/Intermediate/Launch/Launch-system.html) for help. Use your launch file to call both `teleop_twist_keyboard.launch.py` and `bringup.launch.py`. For `teleop_twist_keyboard`, you'll also need to use `xterm`.
-9. Then, write a node to read data from the `/joy` topic and output to `/cmd_vel`. Now you can drive your robot with the controller!
+9. Then, write a node to read data from the `/ros_robot_controller/joy` topic and output to `/cmd_vel`. To figure out what the joystick does, make sure that `ros_robot_controller` is running, connect your controller, and use `ros2 topic echo ros_robot_controller/joy`. You'll be able to see the topic outputs when the controller buttons are pressed. After you write your node and run it, you can drive your robot with the controller!
 
 ## Lab Grading
 
 The grading of each lab is based 50\% on the successful completion of the lab. For this lab, that 50\% breaks down into:
 
-- 10\% for successfully driving your robot around with the keyboard (upload a short video as described below)
-- 20\% for successfully driving your robot around with the joystick (upload a short video as described below)
+- 20\% for successfully driving your robot around with the keyboard (upload a short video as described below)
 - 20\% for successfully writing a launch file
+- 10\% for successfully driving your robot around with the joystick (upload a short video as described below)
 
 ### Lab Report Guidelines
 
-TODO
+The guidelines below will be used in grading your lab report. Be sure to include everything that the guidelines below mention for full credit!
+
+#### 1. Problem Statement
+
+#### 2. Methods
+
+- Briefly describe the Rosbot, including a description of the drivetrain in your own words.
+- 
+
+#### 3. Results
+
+#### AI Appendix
+
+- Include a 1 paragraph reflection on the questions below, whether or not you used AI.
+  - Did you use any AI to support support the completion of this lab? Why or why not?
+  - If no, how could it have helped? What did you gain by avoiding AI use?
+  - If yes, how was your experience of using it? How did it help? What did you miss out on by using AI?
+  - If you used AI, what resources do you think it used in generating its answers?
+  - If you used AI, please copy and paste your interactions below.
