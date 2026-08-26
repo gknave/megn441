@@ -6,7 +6,7 @@
 # Note: Change the location of your linked folder
 # if it is anything other than ~/megn441
 
-LOCAL_DIR="/home/$(id -un)/me441"
+LOCAL_DIR="/home/$(id -un)/megn441"
 
 # This folder maps to /mnt/local within the docker container
 

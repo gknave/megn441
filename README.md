@@ -31,3 +31,10 @@ Once `startDocker.sh` is executable, you can run it with:
 | 3 | 3 | Robot Arm Pick and Place |
 | 4 | 3 | Delivery and Navigation |
 | 5 | 3 | Final Project Showcase |
+
+### Assorted tips and tricks
+
+**Nomachine resolution fix**:
+- Using nomachine, go to the !M dropdown menu, then select `Open Menu Panel`
+- Click the `Display` icon
+- Select `Resize remote display`
