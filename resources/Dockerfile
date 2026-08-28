@@ -1,4 +1,4 @@
-# ROS2 Humble (Ubuntu 24.04 LTS) — change to 'humble' for Ubuntu 22.04
+# ROS2 Humble (Ubuntu 22.04 LTS)
 FROM osrf/ros:humble-desktop-full
 
 # ── System dependencies ────────────────────────────────────────────────────────
