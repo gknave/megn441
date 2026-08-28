@@ -6,6 +6,7 @@
 # Note: Change the location of your linked folder
 # if it is anything other than ~/megn441.
 # $(id -un) just plugs in your username from linux
+# /home/$(id -un) is the same as ~
 
 LOCAL_DIR="/home/$(id -un)/megn441"
 

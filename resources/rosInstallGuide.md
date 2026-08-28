@@ -12,12 +12,25 @@ This is an overall guide for install ROS2 Humble on a computer, for editing and 
 
 Docker is my recommended option. Docker containers are lightweight, isolated development environments that contain all the software you need in a tidy package. They can only connect to the rest of your files if you give them permission. In my description below, I have you hook up a local directory
 
-- *For Windows machines*: Install the Windows Subsystem for Linux (wsl), following the instructions here: [https://learn.microsoft.com/en-us/windows/wsl/install](https://learn.microsoft.com/en-us/windows/wsl/install)
+- *For Windows machines*: Install the Windows Subsystem for Linux (wsl). I recommend going to the Microsoft Store and installing Ubuntu.
 - If using a Mac, no need for WSL. MacOS is a Unix system, so just about all of the functionality you would need from WSL is there behind the scenes using `Terminal`. Can just start by installing Docker Desktop, as below.
 
 - Download and install Docker Desktop: [Docker Desktop Install Page](https://docs.docker.com/get-started/get-docker/)
+- In the Docker Desktop settings, you may need to select the option in `Resources/WSL Integration` called `Enable integration with my default WSL distro`
 - I have included my `Dockerfile`, which can be used to build a ROS workspace and configure it for yourself.
-- To build the Dockerfile, use the following. It will grab the file named `Dockerfile` and create an image called `ros2-dev:latest`
+- You will then need to open Docker Desktop and wsl, and within wsl, navigate to the folder that has my Dockerfile. I recommend setting up a symbolic link in wsl's home directory, which is represented by the symbol `~`. To navigate to a folder, use:
+
+  ```bash
+  cd /path/to/folder/of/interest
+  ```
+
+- To create a symbolic link, use the following, I would put the symbolic folder in the home directory (`~`) at `~/robotics`:
+
+  ```bash
+  ln -s /full/path/to/folder/ /path/to/symbolic_folder/
+  ```
+
+- To build the Dockerfile, use the following command. It will grab the file named `Dockerfile` and create an image called `ros2-dev:latest`
   
   ```bash
   docker build -t ros2-dev .
@@ -29,7 +42,13 @@ Docker is my recommended option. Docker containers are lightweight, isolated dev
   docker run -it ros2-dev
   ```
 
-- Sometimes, I want to run multiple terminals in the same container, then I use: `docker exec -it <container-name> /bin/bash`. The container name is randomly generated each time. If I'm only running one container, I use tab to autocomplete the container name. Otherwise, `docker ps` shows you the list of currently running containers.
+- Sometimes, I want to run multiple terminals in the same container, then I use:
+
+```bash
+docker exec -it <container-name> /bin/bash
+```
+
+- The container name is randomly generated each time. If I'm only running one container, I use the `tab` key to autocomplete the container name. Otherwise, `docker ps` shows you the list of currently running containers with their names.
 - To run docker interactively with GUI integration and a local folder with a path `/path/to/local_dir/` such as `/c/Users/username/Documents/docker_ws`, use:
 
   ```bash
@@ -46,7 +65,8 @@ Docker is my recommended option. Docker containers are lightweight, isolated dev
 - The `-v` flag lets you connect a local directory to a directory within the Docker container, giving access to local files, etc. I use `/mnt/docker_ws` as my location with Docker, but call it what you want! The Docker container will lose its memory upon deletion, but if you connect it to a local directory, you will keep any files modified there.
 - The `-w` flag starts the terminal in your `/mnt/docker_ws` workspace.
 - The `-e` flags connect the container to the graphical interface of your computer. Haven't tested on a Mac yet. Reach out with feedback!
-- I have included this command in the attached `startDocker.sh` script. You'll need to edit the path in this file to match your path on your computer.
+- I have included this command in the attached `startDocker.sh` script. You'll need to edit the LOCAL_DIR variable in this file to match your path on your computer. 
+- To use this shell script, navigate to the folder with it and type `./startDocker.sh` or `sh startDocker.sh`
 - The long `docker run` command above needs some different flags in Linux, so I've also included `startDockerLinux.sh` for those devices.
 
 ## Option 2: VirtualBox Install
