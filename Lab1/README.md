@@ -27,14 +27,12 @@ There are 3 options to connect to the Rosbots. In all approaches, the Rosbot wil
 
 ## Lab Overview
 
-By the end of this lab, you will be able to:
+In this lab, you will learn to use ROS2 Humble to program your Rosbots. You will get oriented to connecting and developing on the bots and then use a builtin package to teleoperate the bot from your keyboard. Then, you will write your own ROS2 package to teleoperate the bots with a controller. By the end of this lab, you will be able to:
 
 - Use ROS2 packages and topics
 - Write a launch file
 - Make your robot drive!
 - Write your own ROS2 node to control your robot with a joystick.
-
-You'll be able to get the Robot driving around with both the keyboard and a handheld controller.
 
 ### Lab Procedure
 
