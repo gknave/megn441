@@ -47,7 +47,7 @@ rsync -ruv src ubuntu@192.168.149.1:~/ros2_ws/
 
 4. On the robot, build the ros2 workspace by navigating to `~/ros2_ws` and using `colcon`. See course notes for support on this, and **don't forget to source `install/setup.bash`**.
 5. If there is nothing currently running on the robot, run the launch file `bringup.launch.py` from the package `bringup`. This will run launch files within the `controller` package to get the drive functionality of the robot up and running.
-6. Investigate some of the topics that are currently available. Use `ros2 topic info` to learn about the msg type. If you use the `-v` flag, it will tell you more information. I'll have you report on 3 of the topics you learn about in the report.
+6. Investigate some of the topics that are currently available with `ros2 topic list`. Use `ros2 topic info` to learn about the msg type for a few of the topics. If you use the `-v` flag, it will tell you more information. I'll have you report on 3 of the topics you learn about in the report.
 7. To drive the robot, in a separate terminal, run the node (not launch file) `teleop_twist_keyboard` from the package `teleop_twist_keyboard`. Now you should be able to drive your robot around!
 8. The next goal is to launch this driving all at once! First, we need to create a package, which we'll call `rosbot`. Navigate to `ros2_ws/src/` and use the following command (change `ament_python` to `ament_cmake` if you prefer C++). In the next step, we'll create a node called `teleop_joy`. The `--node-name` flag here will create that node and tell the package about its existence.
 
@@ -55,7 +55,7 @@ rsync -ruv src ubuntu@192.168.149.1:~/ros2_ws/
 ros2 pkg create rosbot --build-type ament_python --node-name teleop_joy --dependencies teleop_twist_keyboard bringup
 ```
 
-9. Create a directory within `~ros2_ws/src/rosbot` called `launch`. Copy a launch file template from the Lab1 folder here into `~/ros2_ws/src/rosbot/launch`. You will need to modify either `setup.py` or `CMakeLists.txt` to make `colcon` aware of the launch folder. See the [ROS2 Humble launch docs](https://docs.ros.org/en/humble/Tutorials/Intermediate/Launch/Launch-system.html) for help. Use your launch file to call both `teleop_twist_keyboard` and `bringup.launch.py`. For `teleop_twist_keyboard`, you may want to launch it with `xterm`, so it pops up in its own window. Do this by adding the following within the Node to launch teleop_twist_keyboard
+9. Create a directory within `~ros2_ws/src/rosbot` called `launch`. Copy a launch file template from the Lab1 folder here into `~/ros2_ws/src/rosbot/launch`. You will need to modify either `setup.py` or `CMakeLists.txt` to make `colcon` aware of the launch folder. See the [ROS2 Humble launch docs](https://docs.ros.org/en/humble/Tutorials/Intermediate/Launch/Launch-system.html) for help. Use your launch file to call both `teleop_twist_keyboard` and `bringup.launch.py`. For `teleop_twist_keyboard`, you may want to launch it with `xterm`, so it pops up in its own window. Do this by adding the following within the Node to launch teleop_twist_keyboard:
 
 ```bash
 prefix=['xterm -e'],
