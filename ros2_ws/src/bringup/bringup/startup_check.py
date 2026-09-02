@@ -1,34 +1,33 @@
 #!/usr/bin/env python3
 # encoding: utf-8
 # @data:2022/11/04
-# @author:aiden
-# 自检程序(self-test program)
+
 import os
 import time
 import rclpy
 import psutil
 from ros_robot_controller_msgs.msg import BuzzerState, OLEDState
 
-ROBOT_NUMBER = 15
+ROBOT_NUMBER = 12
 
-NAMESPACE = "jetrover"
-
-# def get_cpu_serial_number():
-#     # device_serial_number = open("/proc/device-tree/serial-number")
-#     # serial_num = device_serial_number.readlines()[0][-10:-1]
-
-#     HW_WIFI_AP_SSID = ''.join(["Rosbot-", ROBOT_NUMBER])
-
-#     return HW_WIFI_AP_SSID
+# NAMESPACE = "jetrover"
 
 def get_cpu_serial_number():
-    device_serial_number = open("/proc/device-tree/serial-number")
-    serial_num = device_serial_number.readlines()[0][-10:-1]
+    # device_serial_number = open("/proc/device-tree/serial-number")
+    # serial_num = device_serial_number.readlines()[0][-10:-1]
 
-    sn = (serial_num + "00000000000000000000000000")[:32]
-    HW_WIFI_AP_SSID = ''.join(["HW-", sn[0:8]])
+    HW_WIFI_AP_SSID = ''.join(["ROSBOT-", {}.format(ROBOT_NUMBER)])
 
     return HW_WIFI_AP_SSID
+
+# def get_cpu_serial_number():
+#     device_serial_number = open("/proc/device-tree/serial-number")
+#     serial_num = device_serial_number.readlines()[0][-10:-1]
+
+#     sn = (serial_num + "00000000000000000000000000")[:32]
+#     HW_WIFI_AP_SSID = ''.join(["HW-", sn[0:8]])
+
+#     return HW_WIFI_AP_SSID
 
 def get_wlan():
     ip = ''
@@ -57,8 +56,8 @@ def main():
     
     msg = BuzzerState()
     msg.freq = 1900
-    msg.on_time = 0.04
-    msg.off_time = 0.02
+    msg.on_time = 0.1
+    msg.off_time = 0.01
     msg.repeat = 2
     buzzer_pub.publish(msg)
 

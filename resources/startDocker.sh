@@ -4,16 +4,18 @@
 # docker build -t ros2-dev .
 
 # Note: Change the location of your linked folder
-# if it is anything other than ~/megn441
+# if it is anything other than ~/megn441.
+# $(id -un) just plugs in your username from linux
+# /home/$(id -un) is the same as ~
 
-LOCAL_DIR="/home/$(id -un)/me441"
+LOCAL_DIR="/home/$(id -un)/megn441"
 
-# This folder maps to /mnt/local within the docker container
+# This folder maps to /mnt/docker_ws within the docker container
 
 
 docker run -it -v /tmp/.X11-unix:/tmp/.X11-unix \
-  -v ${LOCAL_DIR}:/mnt/local \
-  -w /mnt/local \
+  -v ${LOCAL_DIR}:/mnt/docker_ws \
+  -w /mnt/docker_ws \
   -e DISPLAY \
   -e WAYLAND_DISPLAY \
   -e XDG_RUNTIME_DIR \
