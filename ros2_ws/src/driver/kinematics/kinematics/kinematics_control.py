@@ -40,7 +40,7 @@ if __name__ == "__main__":
     import rclpy
     from rclpy.node import Node
     import kinematics.transform as transform
-    # 初始化节点
+
     rclpy.init()
     client = self.create_client(SetRobotPose, '/kinematics/set_pose_target')
     while True:

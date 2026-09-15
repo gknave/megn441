@@ -19,21 +19,15 @@ i | α(i-1) | a(i-1) |       θ(i)      | d(i) |
 ----------------------------------------------
 '''
 
-# 连杆长度(m)(length of each linkage (m))
-# 底座的高度，这里把第一个坐标系和第二个坐标的原点重合到一起了(The height of the base. Origin of the first coordinate system is aligned with that of the second one)
-machine_type = os.environ.get('MACHINE_TYPE')
-if machine_type == 'JetRover_Acker':
-    base_link = 0.05 + 0.0654868 + 0.0338648 + 0.0772047
-elif machine_type == 'JetRover_Mecanum':
-    base_link = 0.22736 
-elif machine_type == 'JetRover_Tank':
-    base_link = 0.127 + 0.0338648 + 0.0772047 
+# length of each linkage (m)
+# The height of the base. Origin of the first coordinate system is aligned with that of the second one
+base_link = 0.05 + 0.0654868 + 0.0338648 + 0.0772047
 
 link1 = 0.130
 link2 = 0.130
 
-# 计算tool_link时取值为link3 + tool_link，因为把末端的坐标系原点和前一个重合到一起了(When calculating tool_link, the value is link3 + tool_link, because the origin of the end effector coordinate system is aligned with the previous one)
-# 这里的tool_link指实际上的夹持器长度(tool_link refers to the actual length of the gripper)
+# When calculating tool_link, the value is link3 + tool_link, because the origin of the end effector coordinate system is aligned with the previous one
+# tool_link refers to the actual length of the gripper
 link3 = 0.055
 tool_link = 0.117
 
