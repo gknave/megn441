@@ -7,7 +7,7 @@ from kinematics_msgs.srv import SetRobotPose, SetJointValue
 
 def set_pose_target(position, pitch, pitch_range=[-180.0, 180.0], resolution=1.0):
     '''
-    给Given a coordinate and a pitch angle, return the inverse kinematics solution
+    Given a coordinate and a pitch angle, return the inverse kinematics solution
     position: [x, y, z]，the target position in a list [x, y, z] with units of meters
     pitch: the target pitch angle in degrees, ranging from -180 to 180
     pitch_range: if a solution cannot be found at the target pitch angle, search for a solution within this range

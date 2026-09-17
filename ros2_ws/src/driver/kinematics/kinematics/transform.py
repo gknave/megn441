@@ -31,22 +31,22 @@ link2 = 0.130
 link3 = 0.055
 tool_link = 0.117
 
-# 各关节角度限制，取决于是否碰撞以及舵机的转动范围(Joint angle limits, depending on whether there is collision and the range of servo rotation)
-# 多加0.2为了防止计算时数值的不稳定，会比设定值大一点点(Add 0.2 to prevent numerical instability during calculation, which will be slightly larger than the set value)
+# Joint angle limits, depending on whether there is collision and the range of servo rotation
+# Add 0.2 to prevent numerical instability during calculation, which will be slightly larger than the set value
 joint1 = [-120.2, 120.2]
 joint2 = [-180.2, 0.2]
 joint3 = [-120.2, 120.2]
 joint4 = [-200.2, 20.2]
 joint5 = [-120.2, 120.2]
 
-#         舵机脉宽范围，中位值，对应的角度范围，中位值(Servo pulse width range, neutral position value, corresponding angle range, and neutral position value)
+#         Servo pulse width range, neutral position value, corresponding angle range, and neutral position value
 joint1_map = [0, 1000, 500, -120, 120, 0]
 joint2_map = [0, 1000, 500, 30, -210, -90]
 joint3_map = [0, 1000, 500, 120, -120, 0]
 joint4_map = [0, 1000, 500, 30, -210, -90]
 joint5_map = [0, 1000, 500, -120, 120, 0]
 
-# 判断是否为旋转矩阵(Determine whether it is a rotation matrix)
+# Determine whether it is a rotation matrix
 def isRotationMatrix(r):
     rt = np.transpose(r)
     shouldBeIdentity = np.dot(rt, r)
@@ -55,7 +55,7 @@ def isRotationMatrix(r):
     return n < 1e-6
 
 
-# 旋转矩阵--->欧拉角(rotation matrix--->Euler angles)
+# otation matrix--->Euler angles
 def rot2rpy(R):
     assert (isRotationMatrix(R))
 
@@ -107,7 +107,7 @@ def qua2rpy(qua):
   
     return degrees(roll), degrees(pitch), degrees(yaw)
 
-# 等比例映射(proportional mapping)
+# proportional mapping
 def angle_transform(angle, param, inverse=False):
     if inverse:
         new_angle = ((angle - param[5]) / (param[4] - param[3])) * (param[1] - param[0]) + param[2]
