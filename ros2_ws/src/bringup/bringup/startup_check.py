@@ -16,7 +16,7 @@ def get_cpu_serial_number():
     # device_serial_number = open("/proc/device-tree/serial-number")
     # serial_num = device_serial_number.readlines()[0][-10:-1]
 
-    HW_WIFI_AP_SSID = ''.join(["ROSBOT-", {}.format(ROBOT_NUMBER)])
+    HW_WIFI_AP_SSID = ''.join(["ROSBOT-", '{}'.format(ROBOT_NUMBER)])
 
     return HW_WIFI_AP_SSID
 
