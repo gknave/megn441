@@ -15,6 +15,7 @@
     <geometry>
       <box size="0.2 0.24 0.06"/>
     </geometry>
+  <material name="blue"/>
   </visual>
 
   <collision>
@@ -24,7 +25,6 @@
       <box size="0.2 0.24 0.06"/>
     </geometry>
   </collision>
-  <material name="blue"/>
 </link>
 
 <!-- LEFT_WHEEL -->
