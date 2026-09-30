@@ -14,6 +14,9 @@ By the end of this lab, you'll be able to:
 ### Lab Procedure
 
 0. Create a clean workspace on the robot for your team for this project. Something like: a7_ws for team A7. You won't need any of the base ros2_ws packages - those are all in ~/ros2_ws on the bot, and they get sourced automatically on the robot's startup. `bringup.launch.py` also gets launched automatically. This way, you can just rebuild your locally edited files in lab2. You may still want to bring a `rosbot` package from lab1, this is where I would put new launch files for this lab. You can bring in one team member's teleop_joy from lab1 if you like.
+
+   **Download the `lidar_filters_config_a1.yaml` file and put it in a folder called `rosbot/config/`**. If you want to name your package something else, that is fine, but you'll need to make sure that the correct location is referenced in `sensors_launch.py`.
+
 1. Download and install the sllidar_ros2 package from [Slamtec sllidar](https://github.com/Slamtec/sllidar_ros2). Copy this package over to the robot in your workspace, and build it with `colcon build --packages-select sllidar_ros2`. In order to run the node, you will need to locate the address of your Lidar on the robot. It will be in the `/dev/` folder and should have `USB` in the name. To see potential candidates, you can use `ls /dev | grep USB`. You could also list usb devices on the bot to see what's available with `lsusb` to see all devices. This value will be the `serial_port`. There are two other parameters that we'll need to change from the default node: our `frame_id` should be `lidar_frame` and our `serial_baudrate` should be 115200. Use the ROS2 Humble documentation to figure out how to apply those three parameters in your ros2 run command - they will be flags on your command. To set parameters using the command line, use:
    ```bash
    ros2 run <package> <executable> --ros-args -p param_name:=value
