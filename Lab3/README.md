@@ -22,8 +22,26 @@ By the end of this lab, you'll be able to:
 2. **Write your own ROS2 messages and service**: Next, come up with a plan as a team for how you'd like to send messages about the arm: its forward positions, gripper control, and target positions for inverse kinematics. You'll choose your own topic names and write your own message types for these. Message types are surprisingly straightforward to write. Use [this tutorial](https://docs.ros.org/en/humble/Tutorials/Beginner-Client-Libraries/Custom-ROS2-Interfaces.html) to help you get started. You can use the `rosbot_msgs` template, but you will need to update the `CMakeLists.txt` file with your own message types. Also, create a service type for the robot for the service described in the next step.
 3. **Write the backend arm_control node**: Write a node that takes your custom forward command ROS messages and sends those commands to the arm. This node should also include a service, as described in [this tutorial](https://docs.ros.org/en/humble/Tutorials/Beginner-Client-Libraries/Writing-A-Simple-Py-Service-And-Client.html), to send current angle information from the board. To test this `arm_control` node, you can use the `arm_test` forward mode, although you will need to do a bit of work to configure the publisher to your message type.
 4. **Write the inverse kinematics node**: Work out the inverse kinematics of your arm, given its end-effector xyz location and local roll/pitch. For our pick and place goals, the local pitch angle is -90 degrees, while the roll angle will be whatever it needs to be to grasp the block. Test your inverse kinematics node on some example configurations to be sure that it works as expected. Test whether your inverse kinematics returns realistic angles and send a warning if the request is not okay. You can send a warning message type with `get_logger().warn('message')`. The logger has five priority levels (of increasing severity): `debug`, `info`, `warn`, `error`, and `fatal`.
-5. **Use opencv to identify blocks using the depth cam**: Further instructions to come.
-6. **Write one more node to tell the robot how to stack the blocks**: I recommend putting this in your `rosbot` or `rosbot_arm` package. You will need to modify your `setup.py` to tell it about your new node. In this node, you'll send requests and messages to the other nodes to identify the block locations, pick them up, and place them 20 cm to the right of the robot on the ground. Stack the blocks with red on the bottom, then green, then blue.
+5. **Use opencv to identify blocks using the depth cam**: The `block_detector` package identifies the location of each block and outputs as a `geometry_msgs/msg/Point` within the given `rosbot_msgs/msg/BlockDection` message type, with `(x, y, z)` as the position of the block defined within the `depth_cam` frame. In your sequencer node, you'll need to convert the x, y, z of the block location into the `base_footprint` frame, which is the frame in which your IK node operates. It publishes these detections to the `block_detections` topic.
+
+6. **Write a final sequencer node to tell the robot how to stack the blocks**: I recommend putting this node in your `rosbot` or `rosbot_arm` package, but you can of course create a new package if you prefer. You will need to modify your `setup.py` to tell it about your new node. In this node, you'll send requests and messages to the other nodes to identify the block locations, pick them up, and place them in-line with the robot arm base `20 cm` to the right of the robot on the ground. Stack the blocks on top of one-another with red on the bottom, then green, then blue.
+
+   To transform the point into the `base_footprint` frame, you'll need to use a TF2 Buffer. There is [documentation here](https://docs.ros.org/en/humble/Tutorials/Intermediate/Tf2/Writing-A-Tf2-Listener-Py.html) that is a bit hard to follow. A TF Buffer listens to the published transforms from the `depth_cam` frame to the `base_footprint` frame. I recommend using `tf_buffer.lookup_transform` method and the function below to build the transformation matrix. Note that using numpy, you can use the `@` for matrix multiplication. I use quaternions below because the rotation outputs in quaternions.
+
+   ```python
+   def quat_to_T(q, t):
+    """Convert a quaternion (x, y, z, w) and translation (x, y, z) to a 4x4 transformation matrix."""
+    n = np.sqrt(q.x*q.x + q.y*q.y + q.z*q.z + q.w*q.w)
+    qx, qy, qz, qw = q.x/n, q.y/n, q.z/n, q.w/n
+    return np.array([
+        [1 - 2*(qy*qy + qz*qz), 2*(qx*qy - qz*qw),     2*(qx*qz + qy*qw), t.x],
+        [2*(qx*qy + qz*qw),     1 - 2*(qx*qx + qz*qz), 2*(qy*qz - qx*qw), t.y],
+        [2*(qx*qz - qy*qw),     2*(qy*qz + qx*qw),     1 - 2*(qx*qx + qy*qy), t.z],
+        [0, 0, 0, 1]
+    ])
+   ```
+
+   I would recommend sending your arm to a set forward and down-facing configuration, identifying blocks, and then moving through several pre-defined poses on its way to the target. If you're dropping the block, try slowing down.
 
 ## Lab Grading
 
@@ -48,6 +66,7 @@ The guidelines below will be used in grading your lab report. Be sure to include
 - Describe your team's contributions to the software of the robot for Lab 3
 - Describe the new messages/services that you have written
 - Describe the key equations used to calculate the inverse kinematics of the arm.
+- Explain what a TF buffer does.
 
 #### 3. Results
 
@@ -70,3 +89,8 @@ The guidelines below will be used in grading your lab report. Be sure to include
   - If yes, how was your experience of using it? How did it help? What did you miss out on by using AI?
   - If you used AI, what resources do you think it used in generating its answers?
   - If you used AI, please copy and paste your interactions below:
+
+#### Others
+
+- Be sure to upload your code as a Zip file or a link to a github page (please don't zip build, install, log).
+- If including a link to a video, make sure that it works from a private browser (so the TAs don't have to log in or have access to it)

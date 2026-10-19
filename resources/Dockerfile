@@ -1,4 +1,4 @@
-# ROS2 Humble (Ubuntu 24.04 LTS) — change to 'humble' for Ubuntu 22.04
+# ROS2 Humble (Ubuntu 22.04 LTS)
 FROM osrf/ros:humble-desktop-full
 
 # ── System dependencies ────────────────────────────────────────────────────────
@@ -32,8 +32,7 @@ RUN rosdep update
 
 # ── Auto-source ROS and the local workspace on every shell ────────────────────
 RUN echo "source /opt/ros/humble/setup.bash" >> /root/.bashrc \
-    && echo "export ROS_DOMAIN_ID=0" >> /root/.bashrc \
-    && echo 'export LIDAR_TYPE="A1"' >> /root/.bashrc
+    && echo "export ROS_DOMAIN_ID=0" >> /root/.bashrc
 
 # ── Default shell entrypoint ──────────────────────────────────────────────────
 CMD ["/bin/bash"]
