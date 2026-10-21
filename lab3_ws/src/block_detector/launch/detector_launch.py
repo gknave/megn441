@@ -35,5 +35,6 @@ def generate_launch_description():
 
     return launch.LaunchDescription([
         depth_cam_launch,
-        block_node
+        block_node,
+        rqt_node
     ])
