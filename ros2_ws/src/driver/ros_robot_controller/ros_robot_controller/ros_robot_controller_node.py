@@ -130,7 +130,7 @@ class RosRobotController(Node):
     def get_pwm_servo_state(self, msg):
         states = []
         for i in msg.cmd:
-            data = PWMServoState()
+            data = GetPWMServoState()
             if i.get_position:
                 state = self.board.pwm_servo_read_position(i.id)
                 if state is not None:

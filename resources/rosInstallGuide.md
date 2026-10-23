@@ -44,9 +44,9 @@ Docker is my recommended option. Docker containers are lightweight, isolated dev
 
 - Sometimes, I want to run multiple terminals in the same container, then I use:
 
-```bash
-docker exec -it <container-name> /bin/bash
-```
+  ```bash
+  docker exec -it <container-name> /bin/bash
+  ```
 
 - The container name is randomly generated each time. If I'm only running one container, I use the `tab` key to autocomplete the container name. Otherwise, `docker ps` shows you the list of currently running containers with their names.
 - To run docker interactively with GUI integration and a local folder with a path `/path/to/local_dir/` such as `/c/Users/username/Documents/docker_ws`, use:
