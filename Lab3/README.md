@@ -48,10 +48,10 @@ By the end of this lab, you'll be able to:
 The grading of each lab is based 50\% on the successful completion of the lab. For this lab, that 50\% breaks down into:
 
 - 10\% - Write your own messages/services
-- 10\% - Demonstrate topic-based control of the arm
-- 10\% - Demonstrate correct inverse kinematics of the arm
-- 10\% - Successfully stack blocks with the arm
-- 10\% - Demonstrate autonomous pick and place of the three blocks into a stack.
+- 15\% - Demonstrate topic-based control of the arm
+- 20\% - Demonstrate correct inverse kinematics of the arm
+- 5\% - Stack blocks with the arm from pre-programmed positions OR autonomously move the gripper to the block at any position
+- **10\% Extra Credit** - Demonstrate autonomous pick and place of the two or more blocks into a stack.
 
 ### Lab Report Guidelines
 
