@@ -30,14 +30,15 @@ By the end of this lab, you'll be able to:
    params_file:=/path/to/nav2_params.yaml \
    use_sim_time:=false
    ```
+
    Wait until the output settles and reports that the managed nodes are active. In another tab, open RViz with the Nav2 view:
 
    ```bash
    ros2 launch nav2_bringup rviz_launch.py
    ```
 
-   The view shows the map, the lidar scan, both costmaps, and the planned path. 
-   
+   The view shows the map, the lidar scan, both costmaps, and the planned path.
+
 2. **Experiment with nav2 params**: Spend some time experimenting with nav2, and edit the `nav2_params.yaml` file to explore some of the possible parameters. Two key replacements you should make are to replace your Planner Server and Controller Server with ones that are compatible with an Ackermann Drive car. [Here is a high-level guide on parameter tuning, including tables with planners/controllers and their compatibility](https://docs.nav2.org/rolling/configuration_and_development/tuning_guide/). To use a different planner, go to the configuration guide for that planner and grab the params example from the site. After updating your planner/controller, spend some time playing with specific parameters. Some key ones to pay attention to are `inflation_radius`, `motion_model_for_search`, `minimum_turning_radius`, and various cost metrics. Record your changes to parameters in a table of changed values and a description of their effect. As it drives around, step in front of the bot. What does it do?
 
 3. **Begin your delivery manager node**: By the end of week 3, this delivery manager node will handle pick and place operations along with autonomously calling the navigation servers. For now, we will get it started by creating an Action Client for the `navigate_to_pose` nav2 action ([API](https://api.nav2.org/actions/humble/navigatetopose.html)).
@@ -47,6 +48,7 @@ By the end of this lab, you'll be able to:
 #### Week 2
 
 4. **Write an action servers for arm movement**: The final type of ROS2 interface is an action. I'd like you to modify your inverse kinematics node to create two actions: Pick and Place. The Pick action should receive a goal location for the block, pick it up, and bring it back to a Stowed position, keeping the arm in a nicely tucked orientation for driving. The Place action should move the block from the Stowed position, release it in its target location, and then return to a Stowed position. **Always stow the arm before driving**. Depending on how you want the camera/block position, some possible stow positions are `xyz=[0.1,0,0.24], pitch=-45` or `xyz=[0.1,0,0.2], pitch=-60`.
+
 5. **Write an action clients for your arm movement**: Add action clients for both Pick and Place to your `nav_manager` node, so that your bot can pick and place on command. Update your finite state machine to handle the logical sequence of behaviors.
 <!-- 5. **Write custom behavior tree**: The behavior tree is written using an XML format and is fairly readable on its own, [documentation here](https://www.behaviortree.dev/docs/3.8/learn-the-basics/xml_format). The behavior tree folks also have a lovely free IDE for writing behavior trees in a visual format called [Groot](https://www.behaviortree.dev/groot/). If using Groot, you can access the nav2 custom nodes here: [nav2 Groot tutorial](https://docs.nav2.org/rolling/tutorials/general_tutorials/groot_tutorials/groot/groot/#groot-interacting-with-behavior-trees) -->
 
