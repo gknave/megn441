@@ -13,9 +13,6 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y --no-install-reco
     python3-rosdep \
     python3-vcstool \
     # ROS packages
-    ros-humble-ros2-control \
-    ros-humble-gz-ros2-control \
-    ros-humble-ros2-controllers \
     ros-humble-joint-state-publisher \
     ros-humble-joint-state-publisher-gui \
     ros-humble-slam-toolbox \
@@ -35,8 +32,7 @@ RUN rosdep update
 
 # ── Auto-source ROS and the local workspace on every shell ────────────────────
 RUN echo "source /opt/ros/humble/setup.bash" >> /root/.bashrc \
-    && echo "export ROS_DOMAIN_ID=0" >> /root/.bashrc \
-    && echo 'export LIDAR_TYPE="A1"' >> /root/.bashrc
+    && echo "export ROS_DOMAIN_ID=0" >> /root/.bashrc
 
 # ── Default shell entrypoint ──────────────────────────────────────────────────
 CMD ["/bin/bash"]
